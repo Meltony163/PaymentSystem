@@ -1,0 +1,1 @@
+gcc main.c DataBases/FileHandling/file_handling.c PaymentSystem/Card/card.c PaymentSystem/Terminal/terminal.c  PaymentSystem/Server/server.c DataStructures/Stack/LinkedListStack.c -o out.exe

@@ -63,19 +63,19 @@ EN_transStat_t recieveTransactionData(ST_transaction *transData)
 	{
 		transData->transState=FRAUD_CARD;
 		saveTransaction(transData);
-		return ACCOUNT_NOT_FOUND;
+		return FRAUD_CARD;
 	}
 	if(isBlockedAccount((transData->cardHolderData,&Loc_sCurrentAccount))==BLOCKED_ACCOUNT)
 	{
 		transData->transState=DECLINED_STOLEN_CARD;
 		saveTransaction(transData);
-		return BLOCKED_ACCOUNT;
+		return DECLINED_STOLEN_CARD;
 	}
 	if(isAmountAvailable(&(transData->terminalData),&Loc_sCurrentAccount)==LOW_BALANCE)
 	{
 		transData->transState=DECLINED_INSUFFECIENT_FUND;
 		saveTransaction(transData);
-		return LOW_BALANCE;
+		return DECLINED_INSUFFECIENT_FUND;
 	}
 	extern ST_accountsDB_t* Glob_aAccounts;
 	extern int Glob_nNum;
@@ -83,7 +83,6 @@ EN_transStat_t recieveTransactionData(ST_transaction *transData)
 	{
 		if(strcmp((Loc_sCurrentAccount.primaryAccountNumber),(Glob_aAccounts[i].primaryAccountNumber))==0)
 		{
-			printf("HI\n");
 			Glob_aAccounts[i].balance=Glob_aAccounts[i].balance-((transData->terminalData).transAmount);
 		}
 	}

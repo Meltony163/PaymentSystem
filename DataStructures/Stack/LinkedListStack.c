@@ -51,7 +51,28 @@ void TraversStack(Stack s)
     node* temb=s.top;
     while(temb!=NULL)
     {
-        //printf("%d\n",temb->data);
+        printf("%s	%s	%s	%s	%.2f  %.2f  %d  ",(temb->data.cardHolderData).cardHolderName,
+			(temb->data.cardHolderData).primaryAccountNumber,
+			(temb->data.cardHolderData).cardExpirationDate,
+			(temb->data.terminalData).transactionDate,
+			(temb->data.terminalData).maxTransAmount,
+			(temb->data.terminalData).transAmount,
+			temb->data.transactionSequenceNumber);
+			switch(temb->data.transState)
+			{
+				case APPROVED:
+					printf("APPROVED\n");
+					break;
+				case DECLINED_INSUFFECIENT_FUND:
+					printf("amount is not available\n");
+					break;
+				case DECLINED_STOLEN_CARD:
+					printf("Blocked account\n");
+					break;
+				case FRAUD_CARD:
+					printf("account does not exist");
+					break;
+			}
         temb=temb->link;
     }
 }

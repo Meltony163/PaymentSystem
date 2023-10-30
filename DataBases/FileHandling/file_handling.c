@@ -1,7 +1,6 @@
 #include"../../Libraries/terminallibrary.h"
 #include"../../Libraries/serverlibrary.h"
 #include"../../Libraries/cardlibrary.h"
-#include"../../Libraries/listlibrary.h"
 #include"../../DataStructures/Stack/LinkedListStack.h"
 #include<stdio.h>
 #include <stdint.h>
@@ -9,7 +8,7 @@
 void FILH_vAddAccount(ST_accountsDB_t* ptr_aAccount)
 {
 	FILE *loc_ptr_file;
-	loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/accounts.csv","a");
+	loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/accounts.csv","a");
 	    fprintf(loc_ptr_file,
 			"%.2f,%d,%s\n",
 			ptr_aAccount->balance,
@@ -20,7 +19,7 @@ void FILH_vAddAccount(ST_accountsDB_t* ptr_aAccount)
 void FILH_vAddTransaction(ST_transaction* ptr_tTransaction)
 {
 	FILE *loc_ptr_file;
-	loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/Transaction.csv","a");
+	loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/Transaction.csv","a");
 	    fprintf(loc_ptr_file,
 			"%s,%s,%s,%s,%.2f,%.2f,%d,%d\n",
 			(ptr_tTransaction->cardHolderData).cardHolderName,
@@ -34,7 +33,7 @@ void FILH_vAddTransaction(ST_transaction* ptr_tTransaction)
 }
 void FILH_vDeleteAllAccounts()
 {
-	fclose(fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/accounts.csv","w"));
+	fclose(fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/accounts.csv","w"));
 }
 void FILH_vSaveAccounts()
 {
@@ -50,12 +49,12 @@ void FILH_vSaveAccounts()
 }
 void FILH_vDeleteAllTransaction()
 {
-	fclose(fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/Transaction.csv","w"));
+	fclose(fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/Transaction.csv","w"));
 }
 int FILH_vReadAccounts(ST_accountsDB_t** ptr_pAccount)
 {
     FILE *loc_ptr_file;
-    loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/accounts.csv", "r");
+    loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/accounts.csv", "r");
 	(*ptr_pAccount)=malloc(1*sizeof(ST_accountsDB_t));
     ST_accountsDB_t Loc_cpy_aAccountTemp;
 	int cpy_nSize=0;
@@ -80,7 +79,7 @@ void FILH_vReadAllTransactions()
 	extern Stack Glob_sTransactions;
 	InitStack(&Glob_sTransactions);
 	FILE *loc_ptr_file;
-    loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/Payment System/DataBases/Data/Transaction.csv", "r");
+    loc_ptr_file = fopen("C:/Users/moame/OneDrive/Desktop/PaymentSystem/PaymentSystem/DataBases/Data/Transaction.csv", "r");
 	ST_transaction ptr_tTransaction;;
 	do
     {
